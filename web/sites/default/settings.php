@@ -88,7 +88,17 @@
  * ];
  * @endcode
  */
-$databases = [];
+$databases['default']['default'] = [
+  'database' => 'josephno_drupal',    // Your database name
+  'username' => 'josephno_123',   // Your database username
+  'password' => 'your_sql_password',    // Your database password
+  'host' => 'localhost',                // This is usually localhost
+  'port' => '3306',                     // Default MySQL port
+  'driver' => 'mysql',
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
+
 
 /**
  * Customizing database settings.
