@@ -2,12 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/josephno/public_html
-    - /bin/cp -Rf vendor $DEPLOYPATH
-    - /bin/cp -Rf web $DEPLOYPATH
-    - /bin/cp -f .editorconfig $DEPLOYPATH
-    - /bin/cp -f .gitattributes $DEPLOYPATH
-    - /bin/cp -f composer.json $DEPLOYPATH
-    - /bin/cp -f composer.lock $DEPLOYPATH
-    - /bin/cp -f config.cpanel.yml $DEPLOYPATH
+    - /bin/cp vendor $DEPLOYPATH
+    
 
 
