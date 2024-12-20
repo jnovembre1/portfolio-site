@@ -28,8 +28,8 @@
 
       // Configure Trinity player URL
       const scriptURL = new URL("https://trinitymedia.ai/player/trinity/2900018479/");
-      scriptURL.searchParams.set("pageURL", "https://faithmag.com/formed-image-god");
-      scriptURL.searchParams.set("textSelector", encodeURIComponent(btoa("body")));
+      scriptURL.searchParams.set("pageURL", encodeURIComponent("https://faithmag.com/formed-image-god"));
+      scriptURL.searchParams.set("textSelector", btoa("body")); // Correctly base64-encode without double encoding
 
       scriptEl.src = scriptURL.toString();
 
@@ -41,3 +41,4 @@
   </script>
 </body>
 </html>
+
