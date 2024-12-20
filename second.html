@@ -1,1 +1,43 @@
-<h1> second page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burner Site - Trinity Player Test</title>
+  <!-- Preconnect for improved loading time -->
+  <link href="https://trinitymedia.ai" rel="preconnect" crossorigin="anonymous" />
+  <link href="https://vd.trinitymedia.ai" rel="preconnect" crossorigin="anonymous" />
+</head>
+<body>
+  <div>
+    <h1>Testing Trinity Player</h1>
+    <p>This page references the article: <a href="https://faithmag.com/formed-image-god">Formed in the Image of God</a></p>
+    <div class="trinity-player-container">
+      <div class="trinity-tts-pb" dir="ltr" style="font: 12px / 18px Verdana, Arial; height: 80px; line-height: 80px; text-align: left; margin: 0 0 0 82px;">
+        <strong style="font-weight: 400">Getting your <a href="//trinityaudio.ai" style="color: #4b4a4a; text-decoration: none; font-weight: 700;">Trinity Audio</a> player ready...</strong>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Dynamically add Trinity Player script
+    document.addEventListener("DOMContentLoaded", function () {
+      const scriptEl = document.createElement("script");
+      scriptEl.setAttribute("fetchpriority", "high");
+      scriptEl.setAttribute("charset", "UTF-8");
+
+      // Configure Trinity player URL
+      const scriptURL = new URL("https://trinitymedia.ai/player/trinity/2900018479/");
+      scriptURL.searchParams.set("pageURL", "https://faithmag.com/formed-image-god");
+      scriptURL.searchParams.set("textSelector", encodeURIComponent(btoa("body")));
+
+      scriptEl.src = scriptURL.toString();
+
+      // Append Trinity player script to the body
+      document.body.appendChild(scriptEl);
+
+      console.log("Trinity Player script loaded:", scriptURL.toString());
+    });
+  </script>
+</body>
+</html>
