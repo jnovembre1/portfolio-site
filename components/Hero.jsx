@@ -11,11 +11,25 @@ const Hero = () => {
           A passionate Computer Scientist specializing in Full Stack Development and Machine Learning
         </p>
         <Link
-          href="#projects"
-          className="bg-white text-primary dark:text-secondary px-6 py-3 rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-300 inline-block"
-        >
-          View My Work
-        </Link>
+      href="#projects"
+      className="
+        bg-white 
+        text-primary 
+        dark:bg-gray-800
+        dark:text-white
+        px-6 
+        py-3 
+        rounded-full 
+        font-semibold 
+        hover:bg-gray-200 
+        dark:hover:bg-blue-600 
+        transition 
+        duration-300 
+        inline-block
+      "
+    >
+      View My Work
+    </Link>
       </div>
     </section>
   );

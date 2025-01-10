@@ -12,11 +12,11 @@ module.exports = {
         primary: {
           light: '#1E40AF', // Indigo-800
           DEFAULT: '#1E40AF',
-          dark: '#1E3A8A',
+          dark: '#FFFFFF',
         },
         secondary: {
           light: '#9333EA', // Purple-600
-          DEFAULT: '#9333EA',
+          DEFAULT: '#FFFFFF',
           dark: '#7E22CE',
         },
         accent: {
