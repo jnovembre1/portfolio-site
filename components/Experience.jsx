@@ -26,7 +26,7 @@ const experiences = [
     title: "Information Technology Intern at Faith Catholic",
     duration: "May 2023 - August 2023",
     responsibilities: [
-      "Developed innovative scripting solutions and harnessed programming prowess to create robust knowledge repositories for internal use, leveraging Python and expertise in REST APIs. ",
+      "Developed innovative scripting solutions and harnessed programming prowess to create robust knowledge repositories for internal use, leveraging Python and expertise in REST APIs.",
       "Constructed cutting-edge modules for seamless integration into the company's Drupal deployments, utilizing PHP, JavaScript (JS), and CSS. Successfully implemented a development site using the powerful LAMP tech stack.",
     ],
   },
@@ -34,17 +34,38 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-gray-900">
+    <section
+      id="experience"
+      className="py-20 bg-white dark:bg-gray-900"
+      data-aos="fade-up"
+    >
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">Experience</h2>
+        <h2
+          className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"
+          data-aos="fade-up"
+          data-aos-delay="50"
+        >
+          Experience
+        </h2>
         <div className="space-y-6">
           {experiences.map((exp, index) => (
-            <div key={index} className="bg-gray-50 dark:bg-gray-800 shadow rounded-lg p-6">
-              <h3 className="text-2xl font-semibold text-primary dark:text-primary-dark">{exp.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">{exp.duration}</p>
+            <div
+              key={index}
+              className="bg-gray-50 dark:bg-gray-800 shadow rounded-lg p-6 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+              data-aos="fade-up"
+              data-aos-delay={100 + index * 100}
+            >
+              <h3 className="text-2xl font-semibold text-primary dark:text-primary-dark">
+                {exp.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                {exp.duration}
+              </p>
               <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
                 {exp.responsibilities.map((item, idx) => (
-                  <li key={idx} className="mb-1">{item}</li>
+                  <li key={idx} className="mb-1">
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -56,5 +77,3 @@ const Experience = () => {
 };
 
 export default Experience;
-
-

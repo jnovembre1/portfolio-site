@@ -4,9 +4,19 @@ import Image from 'next/image';
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-gray-100 dark:bg-gray-800" data-aos="fade-up">
+    <section
+      id="about"
+      className="py-20 bg-gray-100 dark:bg-gray-800"
+      data-aos="fade-up"
+    >
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white">About Me</h2>
+        <h2
+          className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"
+          data-aos="fade-up"
+          data-aos-delay="50"
+        >
+          About Me
+        </h2>
         <div className="flex flex-col md:flex-row items-center">
           <div className="md:w-1/3 mb-6 md:mb-0">
             <Image
@@ -14,12 +24,21 @@ const About = () => {
               alt="Joseph Novembre"
               width={256}
               height={256}
-              className="rounded-full object-cover mx-auto"
+              className="rounded-full object-cover mx-auto transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer"
+              data-aos="fade-up"
+              data-aos-delay="100"
             />
           </div>
-          <div className="md:w-2/3 md:pl-12">
+          <div
+            className="md:w-2/3 md:pl-12 transition-all duration-300 transform hover:scale-105"
+            data-aos="fade-up"
+            data-aos-delay="150"
+          >
             <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              I'm Joseph, a dedicated Computer Science student at the University of Toledo, passionate about building scalable and efficient applications. With a strong foundation in full stack development, deployment, and machine learning, I strive to leverage modern technologies to solve real-world problems and continuously expand my skill set.
+              I'm Joseph, a dedicated Computer Science student at the University of Toledo,
+              passionate about building scalable and efficient applications. With a strong foundation in full stack
+              development, deployment, and machine learning, I strive to leverage modern technologies to solve real-world
+              problems and continuously expand my skill set.
             </p>
           </div>
         </div>
@@ -29,6 +48,3 @@ const About = () => {
 };
 
 export default About;
-
-
-
