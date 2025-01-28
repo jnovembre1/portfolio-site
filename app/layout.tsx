@@ -26,7 +26,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const isProduction = process.env.NODE_ENV === 'production';
   const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'G-T0B7C3LCTQ';
   const consent = true; // Set to true or integrate your consent mechanism
 
@@ -34,7 +33,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <head>
         {/* Google Analytics Scripts */}
-        {isProduction && consent && GA_TRACKING_ID && (
+        {GA_TRACKING_ID && (
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
@@ -56,7 +55,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans dark:bg-gray-900 transition-colors duration-300`}>
         <AOSInit /> {/* Initialize AOS */}
         {children}
-        {isProduction && consent && GA_TRACKING_ID && <Analytics trackingId={GA_TRACKING_ID} />}
+        {GA_TRACKING_ID && <Analytics trackingId={GA_TRACKING_ID} />}
       </body>
     </html>
   );
