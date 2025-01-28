@@ -27,7 +27,6 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'G-T0B7C3LCTQ';
-  const consent = true; // Set to true or integrate your consent mechanism
 
   return (
     <html lang="en">
