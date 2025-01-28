@@ -1,11 +1,11 @@
 // app/layout.tsx
 
 import './globals.css';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import Script from 'next/script';
-import { useRouter } from 'next/router';
+import Analytics from '../components/Analytics';
 
-const GA_TRACKING_ID = 'G-T0B7C3LCTQ'; 
+const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'G-T0B7C3LCTQ'; 
 
 export const metadata = {
   title: 'Joseph Novembre - Portfolio',
@@ -13,43 +13,32 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      if (typeof window.gtag !== 'undefined') {
-        window.gtag('config', GA_TRACKING_ID, {
-          page_path: url,
-        });
-      }
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics Script */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
+        {/* Google Analytics Scripts */}
+        {GA_TRACKING_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body>
         {children}
+        {GA_TRACKING_ID && <Analytics trackingId={GA_TRACKING_ID} />}
       </body>
     </html>
   );
