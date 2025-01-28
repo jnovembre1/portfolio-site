@@ -27,7 +27,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const isProduction = process.env.NODE_ENV === 'production';
-  const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'T0B7C3LCTQ';
+  const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || 'G-T0B7C3LCTQ';
   const consent = true; // Set to true or integrate your consent mechanism
 
   return (
