@@ -1,36 +1,57 @@
 // app/layout.tsx
-import '../styles/globals.css';
-import { Geist, Geist_Mono } from "next/font/google";
-import AOSInit from '../components/AOSInit'; // Import the AOS initialization component
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import './globals.css';
+import { ReactNode, useEffect } from 'react';
+import Script from 'next/script';
+import { useRouter } from 'next/router';
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const GA_TRACKING_ID = 'G-T0B7C3LCTQ'; 
 
 export const metadata = {
-  title: "Joseph Novembre - Portfolio",
-  description: "Portfolio website of Joseph Novembre showcasing skills, projects, and experience.",
+  title: 'Joseph Novembre - Portfolio',
+  description: 'Portfolio website of Joseph Novembre showcasing skills, projects, and experience.',
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
+export default function RootLayout({ children }: { children: ReactNode }) {
+  const router = useRouter();
 
-export default function RootLayout({ children }: RootLayoutProps) {
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (typeof window.gtag !== 'undefined') {
+        window.gtag('config', GA_TRACKING_ID, {
+          page_path: url,
+        });
+      }
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans dark:bg-gray-900 transition-colors duration-300`}>
-        <AOSInit /> {/* Initialize AOS */}
+      <head>
+        {/* Google Analytics Script */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
+      <body>
         {children}
       </body>
     </html>
   );
 }
-
 
