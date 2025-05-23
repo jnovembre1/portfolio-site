@@ -1,10 +1,13 @@
 // components/Experience.jsx
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const experiences = [
   {
     title: "Software Development Intern at Faith Catholic",
-    duration: "May 2024 - Aug 2024",
+    duration: "May 2024 - Present",
     responsibilities: [
       "Developed and maintained Drupal CMS patches in PHP, ensuring seamless integration and compatibility.",
       "Created custom Drupal modules using PHP, Symfony, Twig, and JavaScript to enhance site functionality and user experience.",
@@ -24,7 +27,7 @@ const experiences = [
   },
   {
     title: "Information Technology Intern at Faith Catholic",
-    duration: "May 2023 - August 2023",
+    duration: "May 2023 - Aug 2023",
     responsibilities: [
       "Developed innovative scripting solutions and harnessed programming prowess to create robust knowledge repositories for internal use, leveraging Python and expertise in REST APIs.",
       "Constructed cutting-edge modules for seamless integration into the company's Drupal deployments, utilizing PHP, JavaScript (JS), and CSS. Successfully implemented a development site using the powerful LAMP tech stack.",
@@ -32,48 +35,46 @@ const experiences = [
   },
 ];
 
-const Experience = () => {
+export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-20 bg-white dark:bg-gray-900"
-      data-aos="fade-up"
+      className="min-h-[100vh] snap-start bg-black text-white"
     >
-      <div className="container mx-auto px-6">
-        <h2
-          className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"
-          data-aos="fade-up"
-          data-aos-delay="50"
+      <div className="max-w-4xl mx-auto py-20 px-4">
+        <motion.h2
+          className="mb-8 text-4xl font-bold"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
         >
           Experience
-        </h2>
-        <div className="space-y-6">
+        </motion.h2>
+
+        <div className="space-y-12">
           {experiences.map((exp, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-gray-50 dark:bg-gray-800 shadow rounded-lg p-6 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-              data-aos="fade-up"
-              data-aos-delay={100 + index * 100}
+              className="group rounded-xl bg-gray-800 p-6 transition-transform hover:scale-[1.03] hover:shadow-xl"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
             >
-              <h3 className="text-2xl font-semibold text-primary dark:text-primary-dark">
+              <h3 className="text-2xl font-semibold text-white group-hover:text-cyan-400 mb-2">
                 {exp.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {exp.duration}
-              </p>
-              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-                {exp.responsibilities.map((item, idx) => (
-                  <li key={idx} className="mb-1">
-                    {item}
-                  </li>
+              <p className="text-gray-400 mb-4">{exp.duration}</p>
+              <ul className="list-disc list-inside space-y-2 text-gray-300">
+                {exp.responsibilities.map((item, i) => (
+                  <li key={i}>{item}</li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Experience;
+}

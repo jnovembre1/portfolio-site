@@ -2,19 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* globals.css */
+html, body {
+  height: 100%;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  body, html { cursor: none; }
 
-:root {
-  --font-geist-sans: 'Geist', sans-serif;
-  --font-geist-mono: 'Geist Mono', monospace;
+}
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+/* Hide the system cursor everywhere */
+*,
+*::before,
+*::after {
+  cursor: none !important;
 }
 
-body {
-  font-family: var(--font-geist-sans);
+/* Wrapper that follows the mouse */
+.cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 50;
 }
 
-/* You can also create custom Tailwind classes */
-.font-mono {
-  font-family: var(--font-geist-mono);
+/* the glowing highlight circle */
+.cursor-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 60%);
+  border-radius: 50%;
+  transition: width 0.15s ease, height 0.15s ease,
+              background 0.15s ease;
 }
 
+/* enlarge/brighten on hover over interactive elements */
+.cursor-wrapper.hovered .cursor-glow {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
+}
+
+/* the mouse‐pointer icon itself */
+.cursor-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  color: #00ffff;
+  filter: drop-shadow(0 0 4px rgba(0,255,255,0.7));
+  transition: color 0.15s ease, filter 0.15s ease;
+}
+
+/* brighten the icon on hover state too */
+.cursor-wrapper.hovered .cursor-icon {
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
+}

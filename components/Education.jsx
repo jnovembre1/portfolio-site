@@ -1,56 +1,53 @@
-// components/Education.jsx
-import React from 'react';
+// components/Education.tsx
+'use client';
 
-const Education = () => {
+import React from 'react';
+import { motion } from 'framer-motion';
+
+export default function Education() {
   return (
     <section
       id="education"
-      className="py-20 bg-white dark:bg-gray-900"
-      data-aos="fade-up"
+      className="min-h-[100vh] snap-start bg-black text-white"
     >
-      <div className="container mx-auto px-6">
-        <h2
-          className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"
-          data-aos="fade-up"
-          data-aos-delay="50"
+      <div className="max-w-4xl mx-auto py-20 px-4">
+        <motion.h2
+          className="mb-8 text-4xl font-bold"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
         >
           Education
-        </h2>
-        <div className="flex flex-col space-y-6">
-          <div
-            className="bg-gray-50 dark:bg-gray-800 shadow rounded-lg p-6 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <h3 className="text-2xl font-semibold text-primary dark:text-primary-dark">
-              University of Toledo
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Bachelor of Science in Computer Science w/ Minor in Mathematics
-            </p>
-            <p className="text-gray-600 dark:text-gray-300">
-              Graduating December 2025
-            </p>
-            <h4 className="mt-4 font-semibold text-gray-800 dark:text-white">
-              Relevant Coursework:
-            </h4>
-            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-              <li>Object Oriented Programming</li>
-              <li>Linear and Non-Linear Data Structures</li>
-              <li>Discrete Structures</li>
-              <li>Computer Architecture</li>
-              <li>OS Programming</li>
-              <li>Programming Languages and Paradigms</li>
-              <li>Database Management</li>
-              <li>Machine Learning</li>
-              <li>Software Engineering</li>
+        </motion.h2>
+
+        <motion.div
+          className="space-y-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {/* degree */}
+          <div className="border-l-2 border-cyan-500 pl-6">
+            <h3 className="text-2xl font-semibold">B.S. in Computer Science</h3>
+            <p className="mt-1 text-gray-400">University of Toledo</p>
+            <p className="text-gray-400">Expected Graduation: Fall 2025</p>
+          </div>
+
+          {/* relevant coursework */}
+          <div className="border-l-2 border-cyan-500 pl-6">
+            <h3 className="text-2xl font-semibold">Relevant Coursework</h3>
+            <ul className="mt-2 list-disc list-inside space-y-2 text-gray-300">
+              <li>Algorithms & Data Structures</li>
+              <li>Operating Systems & System Programming</li>
+              <li>Data Communications & Networking</li>
+              <li>Machine Learning & AI</li>
               <li>Theory of Computation</li>
             </ul>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Education;
+}

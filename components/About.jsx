@@ -1,50 +1,80 @@
 // components/About.jsx
-import React from 'react';
-import Image from 'next/image';
+'use client';
 
-const About = () => {
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaFilePdf } from 'react-icons/fa';
+
+export default function About() {
   return (
     <section
       id="about"
-      className="py-20 bg-gray-100 dark:bg-gray-800"
-      data-aos="fade-up"
+      className="min-h-[100vh] snap-start bg-black text-white"
     >
-      <div className="container mx-auto px-6">
-        <h2
-          className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"
-          data-aos="fade-up"
-          data-aos-delay="50"
+      <div className="max-w-4xl mx-auto py-20 px-4 grid gap-8 md:grid-cols-2 items-center">
+        {/* profile Image */}
+        <motion.div
+          className="flex justify-center md:justify-start"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
         >
-          About Me
-        </h2>
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/3 mb-6 md:mb-0">
-            <Image
-              src="/profile.jpg"
-              alt="Joseph Novembre"
-              width={256}
-              height={256}
-              className="rounded-full object-cover mx-auto transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            />
-          </div>
-          <div
-            className="md:w-2/3 md:pl-12 transition-all duration-300 transform hover:scale-105"
-            data-aos="fade-up"
-            data-aos-delay="150"
+          <img
+            src="/profile.jpg"
+            alt="Photo of Joseph Novembre"
+            className="rounded-full w-48 h-48 object-cover border-4 border-cyan-500"
+          />
+        </motion.div>
+
+        {/* about Text */}
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h2 className="text-3xl font-bold mb-4">About Me</h2>
+          
+          {/* resume Download Button */}
+          <a
+            href="https://docs.google.com/document/d/1GHlkEgA0yJ6oJH4Bdxuh6SDcCMB_wVTaTO0DZDgjw4A/edit?usp=sharing" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center gap-2 
+              bg-blue-600 hover:bg-blue-700 
+              text-white font-semibold 
+              px-6 py-3 rounded-lg 
+              transition-shadow shadow-md 
+              hover:shadow-lg
+            "
           >
-            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              I'm Joseph, a dedicated Computer Science student at the University of Toledo,
-              passionate about building scalable and efficient applications. With a strong foundation in full stack
-              development, deployment, and machine learning, I strive to leverage modern technologies to solve real-world
-              problems and continuously expand my skill set.
-            </p>
-          </div>
-        </div>
+            <FaFilePdf className="w-5 h-5" />
+            <span>RESUME</span>
+          </a>
+
+          <p className="text-lg leading-relaxed text-gray-300">
+            I’m a soon to be Computer Science graduate with a passion for building
+            end-to-end solutions. Over the past few years, I’ve:
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-400">
+            <li>
+              Led a 5-person team as Technical Lead on a Dockerized facial‐recognition attendance system using FastAPI & OpenCV.
+            </li>
+            <li>
+              Developed full-stack applications with Next.js, React, Node.js, and PostgreSQL—deploying to AWS Lightsail and Azure.
+            </li>
+            <li>
+              Customized and extended Drupal CMS modules, integrating Python scripts to fetch RESTful API data.
+            </li>
+            <li>
+              Built machine learning pipelines for computer vision and natural language tasks, optimizing models for accuracy and performance.
+            </li>
+          </ul>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

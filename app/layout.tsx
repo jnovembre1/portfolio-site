@@ -1,24 +1,26 @@
 // app/layout.tsx
 
 import '../styles/globals.css';
-import { Geist, Geist_Mono } from "next/font/google";
-import AOSInit from '../components/AOSInit'; // Import the AOS initialization component
-import Analytics from '../components/Analytics'; // Import the Analytics component
-import Script from 'next/script'; // Import Script from next/script
+import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
+import CustomCursor from '@/components/CustomCursor';
+import AOSInit from '@/components/AOSInit';
+import Analytics from '@/components/Analytics';
+import SectionIndicator from '@/components/SectionIndicator';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata = {
-  title: "Joseph Novembre - Portfolio",
-  description: "Portfolio website of Joseph Novembre showcasing skills, projects, and experience.",
+  title: 'Joseph Novembre - Portfolio',
+  description: 'Portfolio website of Joseph Novembre showcasing skills, projects, and experience.',
 };
 
 interface RootLayoutProps {
@@ -31,7 +33,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics Scripts */}
         {GA_TRACKING_ID && (
           <>
             <Script
@@ -51,13 +52,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </>
         )}
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans dark:bg-gray-900 transition-colors duration-300`}>
-        <AOSInit /> {/* Initialize AOS */}
+      <body
+        className={`
+          ${geistSans.variable} ${geistMono.variable}
+          font-sans dark:bg-gray-900
+          transition-colors duration-300
+          cursor-none
+        `}
+      >
+        <SectionIndicator />
+        <CustomCursor />
+        <AOSInit />
         {children}
         {GA_TRACKING_ID && <Analytics trackingId={GA_TRACKING_ID} />}
       </body>
     </html>
   );
 }
-
-

@@ -1,35 +1,54 @@
 // components/WebsiteInfoLightsail.jsx
-import React from 'react';
+'use client';
 
-const WebsiteInfoLightsail = () => {
+import React from 'react';
+import { motion } from 'framer-motion';
+
+export default function WebsiteInfoLightsail() {
   return (
     <section
       id="website-info-lightsail"
-      className="py-16 bg-white dark:bg-gray-900 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
-      data-aos="fade-up"
-      data-aos-delay="50"
+      className="min-h-[100vh] snap-start bg-black text-white"
     >
-      <div className="container mx-auto px-6">
-        <h3 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-4">
+      <div className="max-w-4xl mx-auto py-20 px-4">
+        <motion.h2
+          className="mb-8 text-4xl font-bold"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+        >
           Website Deployment & Infrastructure
-        </h3>
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          This website is hosted on <span className="font-semibold text-indigo-700">AWS Lightsail</span> using a
-          clean <span className="font-semibold">Ubuntu 24</span> installation, fully configured by me. I set up all the
-          necessary server components, including web server configuration, SSL certificates, and firewall rules, to ensure a secure and optimized environment.
-        </p>
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          The deployment process is automated via a <span className="font-semibold text-indigo-700">GitHub webhook</span>, which triggers an
-          automatic update every time I push new changes to the repository. This ensures that the site stays up-to-date
-          without requiring manual intervention.
-        </p>
-        <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-          This approach not only demonstrates modern DevOps practices but also reflects my hands-on experience in server
-          administration and custom deployments. It’s a robust, maintainable solution built for scalability and performance.
-        </p>
+        </motion.h2>
+
+        <motion.div
+          className="space-y-6 text-lg leading-relaxed text-gray-300"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+        >
+          <p>
+            This website is hosted on{' '}
+            <span className="font-semibold text-cyan-400">AWS Lightsail</span>{' '}
+            using a clean <span className="font-semibold">Ubuntu 24</span>{' '}
+            installation, fully configured by me. I set up all the necessary
+            server components—web server configuration, SSL certificates, and
+            firewall rules—to ensure a secure, optimized environment.
+          </p>
+          <p>
+            Deployments are automated via a{' '}
+            <span className="font-semibold text-cyan-400">GitHub webhook</span>,
+            which triggers an update every time I push changes. This ensures
+            the site stays up-to-date without manual intervention.
+          </p>
+          <p>
+            This approach demonstrates modern DevOps practices and my hands-on
+            experience in server administration and custom deployments. It’s a
+            robust, maintainable solution built for scalability and performance.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default WebsiteInfoLightsail;
+}

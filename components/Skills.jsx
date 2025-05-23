@@ -1,81 +1,144 @@
 // components/Skills.jsx
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiBootstrap,
+  SiMaterialdesign,
+  SiNodedotjs,
+  SiExpress,
+  SiPython,
+  SiFlask,
+  SiPhp,
+  SiDrupal,
+  SiMysql,
+  SiPostgresql,
+  SiGit,
+  SiGithub,
+  SiDocker,
+  SiPostman,
+  SiHeroku,
+  SiNetlify,
+  SiVercel,
+  SiSelenium,
+  SiPuppeteer,
+  SiOpenai,
+  SiHuggingface,
+  SiNumpy,
+  SiSymfony,
+  SiJquery
+} from 'react-icons/si';
+import { FaTerminal, FaCloud, FaCode } from 'react-icons/fa';
 
-const skills = {
-  Knowledge: [
-    "Experience with Deployment and Handling of Webpages",
-    "Full Stack Experience",
-    "API Integration",
-    "Developing Machine Learning Applications",
-  ],
-  Programming: [
-    "Java",
-    "C++",
-    "Python",
-    "MatLab",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "PHP",
-    "Twig",
-    "SQL",
-  ],
-  Tech: [
-    "Docker",
-    "Drupal",
-    "Platform.sh",
-    "DDev",
-    "Apache Web Server",
-    "Postman",
-  ],
-  LibrariesDatabases: [
-    "MySQL",
-    "Symfony",
-    "Ajax",
-    "jQuery",
-    "NumPy",
-  ],
-};
+const skillCategories = [
+  {
+    title: 'Frontend',
+    skills: [
+      { name: 'HTML5', icon: <SiHtml5 /> },
+      { name: 'CSS3', icon: <SiCss3 /> },
+      { name: 'JavaScript', icon: <SiJavascript /> },
+      { name: 'React', icon: <SiReact /> },
+      { name: 'Next.js', icon: <SiNextdotjs /> },
+      { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+      { name: 'Bootstrap', icon: <SiBootstrap /> },
+      { name: 'Material UI', icon: <SiMaterialdesign /> },
+    ],
+  },
+  {
+    title: 'Backend',
+    skills: [
+      { name: 'Node.js', icon: <SiNodedotjs /> },
+      { name: 'Express', icon: <SiExpress /> },
+      { name: 'Python', icon: <SiPython /> },
+      { name: 'Flask', icon: <SiFlask /> },
+      { name: 'PHP', icon: <SiPhp /> },
+      { name: 'Drupal CMS', icon: <SiDrupal /> },
+      { name: 'MySQL', icon: <SiMysql /> },
+      { name: 'PostgreSQL', icon: <SiPostgresql /> },
+    ],
+  },
+  {
+    title: 'Tools & DevOps',
+    skills: [
+      { name: 'Git', icon: <SiGit /> },
+      { name: 'GitHub', icon: <SiGithub /> },
+      { name: 'VS Code', icon: <FaCode /> },          // fallback
+      { name: 'Docker', icon: <SiDocker /> },
+      { name: 'DDEV', icon: <FaTerminal /> },
+      { name: 'Platform.sh', icon: <FaCloud /> },
+      { name: 'Postman', icon: <SiPostman /> },
+      { name: 'Heroku', icon: <SiHeroku /> },
+      { name: 'Netlify', icon: <SiNetlify /> },
+      { name: 'Vercel', icon: <SiVercel /> },
+    ],
+  },
+  {
+    title: 'Automation & AI',
+    skills: [
+      { name: 'Selenium', icon: <SiSelenium /> },
+      { name: 'Puppeteer', icon: <SiPuppeteer /> },
+      { name: 'OpenAI', icon: <SiOpenai /> },
+      { name: 'HuggingFace', icon: <SiHuggingface /> },
+      { name: 'NumPy', icon: <SiNumpy /> },
+      { name: 'Symfony', icon: <SiSymfony /> },
+      { name: 'jQuery', icon: <SiJquery /> },
+      { name: 'Web Scraping', icon: <SiJquery /> }, // generic fallback
+    ],
+  },
+];
 
-const Skills = () => {
+export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-20 bg-gray-100 dark:bg-gray-800"
-      data-aos="fade-up"
+      className="min-h-[100vh] snap-start bg-black text-white"
     >
-      <div className="container mx-auto px-6">
-        <h2
-          className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-white"
-          data-aos="fade-up"
-          data-aos-delay="50"
+      <div className="max-w-4xl mx-auto py-20 px-4">
+        <motion.h2
+          className="mb-8 text-4xl font-bold"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
         >
           Skills
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {Object.keys(skills).map((category, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-700 shadow rounded-lg p-6 transition-all duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer"
-              data-aos="fade-up"
-              data-aos-delay={100 + index * 100}
+        </motion.h2>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+          {skillCategories.map((cat, i) => (
+            <motion.div
+              key={i}
+              className="p-6 bg-gray-800 rounded-xl"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: i * 0.2 }}
             >
-              <h3 className="text-2xl font-semibold mb-4 text-primary dark:text-primary-dark">
-                {category}
+              <h3 className="mb-4 text-xl font-semibold uppercase text-cyan-400">
+                {cat.title}
               </h3>
-              <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-                {skills[category].map((skill, idx) => (
-                  <li key={idx} className="mb-1">
-                    {skill}
-                  </li>
+              <div className="flex flex-wrap gap-3">
+                {cat.skills.map((skill, idx) => (
+                  <span
+                    key={idx}
+                    className="flex items-center gap-2 px-3 py-2 bg-gray-700 rounded-md text-sm"
+                  >
+                    {React.cloneElement(skill.icon, { className: 'w-5 h-5' })}
+                    {skill.name}
+                  </span>
                 ))}
-              </ul>
-            </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

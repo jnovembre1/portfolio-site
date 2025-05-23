@@ -1,64 +1,81 @@
 // components/Footer.jsx
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer
+    <motion.footer
       id="contact"
-      className="bg-gray-800 dark:bg-gray-900 text-white py-8"
-      data-aos="fade-up"
+      className="min-h-[100vh] snap-start bg-black text-white flex items-center justify-center py-20"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.8 }}
     >
-      <div className="container mx-auto px-6 text-center">
-        <h3
-          className="text-2xl font-semibold mb-4"
-          data-aos="fade-up"
-          data-aos-delay="50"
+      <div className="max-w-4xl w-full text-center px-4">
+        <motion.h2
+          className="mb-6 text-4xl font-bold"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
         >
           Get in Touch
-        </h3>
-        <p className="mb-6 text-gray-300 dark:text-gray-400">
+        </motion.h2>
+
+        <motion.p
+          className="mb-8 text-gray-300"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+        >
           Feel free to reach out via email or connect with me on LinkedIn!
-        </p>
-        <div className="flex justify-center space-x-6 mb-6">
+        </motion.p>
+
+        <motion.div
+          className="flex justify-center space-x-6 mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
           <a
             href="mailto:josephnovem@gmail.com"
-            className="hover:text-accent transition-all duration-300 transform hover:scale-105"
+            className="flex items-center space-x-2 text-gray-300 hover:text-cyan-400 transition-transform transform hover:scale-105"
           >
-            <div className="flex items-center space-x-2">
-              <FaEnvelope className="h-6 w-6" />
-              <span>Email</span>
-            </div>
+            <FaEnvelope className="h-6 w-6" />
+            <span>Email</span>
           </a>
           <a
             href="https://www.linkedin.com/in/joseph-novembre-5678231b2/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-accent transition-all duration-300 transform hover:scale-105"
+            className="flex items-center space-x-2 text-gray-300 hover:text-cyan-400 transition-transform transform hover:scale-105"
           >
-            <div className="flex items-center space-x-2">
-              <FaLinkedin className="h-6 w-6" />
-              <span>LinkedIn</span>
-            </div>
+            <FaLinkedin className="h-6 w-6" />
+            <span>LinkedIn</span>
           </a>
           <a
             href="https://github.com/jnovembre1/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-accent transition-all duration-300 transform hover:scale-105"
+            className="flex items-center space-x-2 text-gray-300 hover:text-cyan-400 transition-transform transform hover:scale-105"
           >
-            <div className="flex items-center space-x-2">
-              <FaGithub className="h-6 w-6" />
-              <span>GitHub</span>
-            </div>
+            <FaGithub className="h-6 w-6" />
+            <span>GitHub</span>
           </a>
-        </div>
-        <p className="mt-4 text-gray-500 dark:text-gray-400">
-          &copy; {new Date().getFullYear()} Joseph Novembre. All rights reserved.
-        </p>
-      </div>
-    </footer>
-  );
-};
+        </motion.div>
 
-export default Footer;
+        <motion.p
+          className="text-gray-500"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          &copy; {new Date().getFullYear()} Joseph Novembre. All rights reserved.
+        </motion.p>
+      </div>
+    </motion.footer>
+  );
+}

@@ -1,7 +1,6 @@
 // app/page.jsx
 import Head from 'next/head';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
 import About from '../components/About';
 import Education from '../components/Education';
 import Projects from '../components/Projects';
@@ -9,6 +8,7 @@ import Experience from '../components/Experience';
 import Skills from '../components/Skills';
 import Footer from '../components/Footer';
 import WebsiteInfo from '../components/WebsiteInfo';
+import HeroBanner from '@/components/HeroBanner';
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
       </Head>
       <Header />
       <main className="mt-20"> 
-        <Hero />
+        <HeroBanner />
         <About />
         <WebsiteInfo />
         <Education />
