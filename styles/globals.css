@@ -2,70 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ————————————————————————————————
+   LAYER: base (runs after utilities)
+   ———————————————————————————————— */
+   @layer base {
+    /* hide system cursor everywhere — including interactive elements */
+    html, body,
+    button, a, input, textarea,
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
+/* force-hide the system cursor in header/nav */
+header,
+header *,
+header a,
+header button {
+  cursor: none !important;
+}
+  
+/* 1. Global layout */
 html, body {
   height: 100%;
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
-  body, html { cursor: none; }
+}
 
-}
-section {
-  scroll-snap-align: start;
-  min-height: 100vh;
-}
-/* Hide the system cursor everywhere */
-*,
-*::before,
-*::after {
+/* 2. Hide the system cursor everywhere */
+*, *::before, *::after {
   cursor: none !important;
 }
 
-/* Wrapper that follows the mouse */
+/* 3. Cursor wrapper */
 .cursor-wrapper {
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none;
+  /* center under pointer */
   transform: translate(-50%, -50%);
-  z-index: 50;
+  pointer-events: none;
+  /* must be higher than header’s z-50 */
+  z-index: 9999;
+  transition: transform 0.05s ease-out;
 }
 
-/* the glowing highlight circle */
+/* 4. Glow effect */
 .cursor-glow {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
+  width: 80px; height: 80px;
   background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 60%);
   border-radius: 50%;
   transition: width 0.15s ease, height 0.15s ease,
               background 0.15s ease;
 }
 
-/* enlarge/brighten on hover over interactive elements */
-.cursor-wrapper.hovered .cursor-glow {
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
-}
-
-/* the mouse‐pointer icon itself */
+/* 5. Icon */
 .cursor-icon {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
+  width: 24px; height: 24px;
   color: #00ffff;
   filter: drop-shadow(0 0 4px rgba(0,255,255,0.7));
   transition: color 0.15s ease, filter 0.15s ease;
 }
 
-/* brighten the icon on hover state too */
+/* 6. Hovered state */
+.cursor-wrapper.hovered .cursor-glow {
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%);
+}
+
 .cursor-wrapper.hovered .cursor-icon {
   color: #ffffff;
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
 }
+
+/* 7. Disable on touch-only (mobile) */
+@media (hover: none) {
+  *, *::before, *::after {
+    cursor: auto !important;
+  }
+  .cursor-wrapper {
+    display: none !important;
+  }
+}
+
+/* 8. Scroll snapping */
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+}
+
+

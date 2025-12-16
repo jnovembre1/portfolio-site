@@ -8,6 +8,7 @@ import AOSInit from '@/components/AOSInit';
 import Analytics from '@/components/Analytics';
 import SectionIndicator from '@/components/SectionIndicator';
 
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </>
         )}
       </head>
+      
       <body
         className={`
           ${geistSans.variable} ${geistMono.variable}
